@@ -39,7 +39,7 @@ _Comentários não são lidos pelo compilador e ajudam no entendimento do leitor
 
 using namespace std;
 
-int main(){ // declarando a função main, o "corpo" do programa
+int main() { // declarando a função main, o "corpo" do programa
 
   cout << "mensagem 1" << "mensagem 2" << "..." << "\n";
 
@@ -81,7 +81,7 @@ Para armazenarmos um input em uma variável, podemos usar `cin`. As variáveis s
 ```cpp
 #include <iostream>
 using namespace std;
-int main(){
+int main() {
   double raio; // declarando a variável raio
 
   cin >> raio; // lendo o valor na tela e salvando em "raio"
@@ -114,6 +114,7 @@ Por exemplo, _int_: -32767 a 32767 e _long int_: -2147483647 a 2147483647.
 
 Uma técnica simples e muito útil para encontrar a origem dos erros é imprimir as váriaveis múltiplas vezes ao longo do código. Caso elas apresentem valores corretos, o erro provavelmente está em outra parte do programa.
 
+<br>
 <h1 id="controle">:green_book: Controlando o Código</h1>
 
 <h2>Seleção - Parte 1</h2>
@@ -152,7 +153,7 @@ Podemos incluir uma condição no else, resultando em estruturas de if e else _a
 ```cpp
 #include <iostream>
 using namespace std;
-int main(){
+int main() {
   double altura; // declarando a variável altura
 
   cin >> altura; // lendo o valor na tela e salvando em "altura"
@@ -227,7 +228,7 @@ _É importante tomar muito cuidado ao usar while, pois se o estado da condição
 
 using namespace std;
 
-int main(){
+int main() {
   int A; // declarando as variáveis A e B
   int B;
   cin >> A >> B; // lendo e armazenando os valores de A e B
@@ -337,21 +338,27 @@ Logaritmo:
 
 Um vetor em C++ pode ser entendido como um conjunto ordenado de variáveis _de um mesmo tipo_.
 
-Podemos inicializar um vetor vazio ou preenchido de variáveis.
+Podemos inicializar um vetor vazio ou preenchido de valores:
 
 - `tipo_das_variaveis nome[n];`
-- `tipo_das_variaveis nome[n] = {variável 1, variável 2, ..., variável n};`
+- `tipo_das_variaveis nome[n] = {valor 1, valor 2, ..., valor n};`
 
-Todos os valores de um vetor se encontram em _índices_, o primeiro elemento está no _índice 0_, o segundo no _índice 1_ e assim por diante. Uma forma de acessá-los é por meio do `for`.
+Todos os valores de um vetor se encontram em _índices_, o primeiro elemento está no _índice 0_, o segundo no _índice 1_ e assim por diante.
+
+Para atribuir/modificar o valor no _índice n_ dentro de um vetor previamente declarado:
+
+- `nome[n] = valor;`
+
+Frequentemente precisamos percorrer todas as posições de um vetor por meio do `for`.
 
 ```cpp
 #include <iostream>
 
 using namespace std;
 
-int main(){
+int main() {
   int n; // declarando a variável n (1 <= n <= 10^6)
-  int sequencia[1000000]; // declarando o vetor de inteiros "sequencia" de 1000000 posições
+  int sequencia[1000000]; // declarando um vetor de inteiros de 1000000 posições
   cin >> n; // lendo o valor na tela e atribuindo-o à n
   for (int i = 0; i < n; i++) {
     cin >> sequencia[i]; // salvando cada número em uma posição do vetor, de 0 até n - 1
@@ -361,5 +368,47 @@ int main(){
   }
   cout << "\n"; // imprimindo a quebra de linha no fim do código
   return 0;
+}
+```
+
+<br>
+<h2>Matrizes</h2>
+
+Basicamente, matrizes são vetores de duas dimensões. Portanto, o processo de inicializar uma matriz de _n linhas_ e _m colunas_ é bem semelhante ao dos vetores:
+
+- `tipo_das_variaveis nome[n][m];`
+
+Para atribuir/modificar um valor na linha _i_ e coluna _j_:
+
+- `nome[i][j] = valor;`
+
+É intuitivo pensar em preencher a matriz com alguma estrutura de repetição, e, nesse caso, usaremos dois laços `for` aninhados.
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    int n, m;
+    int A[110][110], B[110][110]; // declarando duas matrizes 110x110
+    cin >> n >> m;
+    for (int i = 0; i < n; i++) { // para cada linha
+        for (int j = 0; j < m; j++) { // para cada coluna
+            cin >> A[i][j]; // leia um elemento e armazene-o na matriz A
+        }
+    }
+    for (int i = 0; i < n; i++) { // para cada linha
+        for (int j = 0; j < m; j++) { // para cada coluna
+            cin >> B[i][j]; // leia um elemento e armazene-o na matriz B
+        }
+    }
+    for (int i = 0; i < n; i++) { // para cada linha
+        for (int j = 0; j < m; j++) { // para cada coluna
+            cout << A[i][j] + B[i][j] << " "; // imprima a soma de  aij + bij
+        }
+        cout << "\n";
+    }
+    return 0;
 }
 ```
