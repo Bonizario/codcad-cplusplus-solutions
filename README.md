@@ -6,7 +6,14 @@
 
 <h2 align="center">Anotações e soluções dos exercícios do curso "Programação Básica para Competições de Programação (em C++) - CodCad"</h2>
 
-<p align="center">Todas as videoaulas e exercícios podem ser acessados na plataforma <a href="https://neps.academy/course/6" target="_blank">Neps Academy</a></p>
+<h3 align="center">Todas as videoaulas e exercícios podem ser acessados na plataforma <a href="https://neps.academy/course/6" target="_blank" style="color:#32cd32;">Neps Academy</a></h3>
+
+<br>
+<h3 align="center">
+<a href="#introducao" style="color:#32cd32;">Introdução</a>
+ | <a href="#controle" style="color:#32cd32;">Controlando o Código</a>
+ | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a>
+</h3>
 
 <br>
 <h1 id="introducao">:green_book: Introdução</h1>
@@ -97,7 +104,7 @@ int main() {
 }
 ```
 
-Cada tipo de variável possui um [limite de armazenamento](http://www.cplusplus.com/reference/climits/) específico.
+Cada tipo de variável possui um <a href="http://www.cplusplus.com/reference/climits/" target="_blank" style="color:#32cd32;">limite de armazenamento</a> específico.
 
 Por exemplo, _int_: -32767 a 32767 e _long int_: -2147483647 a 2147483647.
 
