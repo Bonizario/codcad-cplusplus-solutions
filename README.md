@@ -12,7 +12,7 @@
 <h3 align="center">
 <a href="#introducao" style="color:#32cd32;">Introdução</a>
  | <a href="#controle" style="color:#32cd32;">Controlando o Código</a>
- | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a>
+ | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a> | <a href="#cadeiadecaracteres" style="color:#32cd32;">Cadeia de Caracteres</a>
 </h3>
 
 <br>
@@ -87,7 +87,9 @@ Para armazenarmos um input em uma variável, podemos usar `cin`. As variáveis s
 
 ```cpp
 #include <iostream>
+
 using namespace std;
+
 int main() {
   double raio; // declarando a variável raio
 
@@ -159,7 +161,9 @@ Podemos incluir uma condição no else, resultando em estruturas de if e else _a
 
 ```cpp
 #include <iostream>
+
 using namespace std;
+
 int main() {
   double altura; // declarando a variável altura
 
@@ -238,12 +242,17 @@ using namespace std;
 int main() {
   int A; // declarando as variáveis A e B
   int B;
+
   cin >> A >> B; // lendo e armazenando os valores de A e B
+
   int i = A; // criando uma variável contadora i que começa de A
+
   while (i <= B) { // enquanto i for menor ou igual a B
+
     if (i % 2 == 0) { // se i é par
-      cout << i << " "; // imprimindo i na tela
+      cout << i << " "; // imprime i na tela
     }
+
     i = i + 1; // incrementando i
   }
   cout << "\n";
@@ -278,6 +287,7 @@ int main() {
     int var;
     for (int i = 1; i <= 10; i++) { // repetindo uma sequência de comandos 10 vezes
         cin >> var; // lendo um valor e armazenando-o em var
+
         if (var == 0) { // se o valor for igual a 0
             break; // encerre o for
         }
@@ -301,7 +311,8 @@ int main() {
         if (i % 7 == 0) { // se o resto da divisão de i por 7 for igual a 0
             continue; // siga para a próxima iteração
         }
-        cout << i << " "; // todos os outros comandos que seriam executados após o continue são ignorados
+        // todos os outros comandos que seriam executados após o continue são ignorados
+        cout << i << " ";
     }
     cout << "\n";
     return 0;
@@ -350,6 +361,10 @@ Podemos inicializar um vetor vazio ou preenchido de valores:
 - `tipo_das_variaveis nome[n];`
 - `tipo_das_variaveis nome[n] = {valor 1, valor 2, ..., valor n};`
 
+É comum precisarmos inicializar um vetor completamente preenchido por zeros:
+
+- `int nome[n] = {0};`
+
 Todos os valores de um vetor se encontram em _índices_, o primeiro elemento está no _índice 0_, o segundo no _índice 1_ e assim por diante.
 
 Para atribuir/modificar o valor no _índice n_ dentro de um vetor previamente declarado:
@@ -365,11 +380,15 @@ using namespace std;
 
 int main() {
   int n; // declarando a variável n (1 <= n <= 10^6)
+
   int sequencia[1000000]; // declarando um vetor de inteiros de 1000000 posições
+
   cin >> n; // lendo o valor na tela e atribuindo-o à n
+
   for (int i = 0; i < n; i++) {
     cin >> sequencia[i]; // salvando cada número em uma posição do vetor, de 0 até n - 1
   }
+
   for (int i = n - 1; i >= 0; i--) {
     cout << sequencia[i] << " "; // percorrendo o vetor de trás para frente, imprimindo seus elementos
   }
@@ -400,6 +419,7 @@ int main() {
     int n, m;
     int A[110][110], B[110][110]; // declarando duas matrizes 110x110
     cin >> n >> m;
+
     for (int i = 0; i < n; i++) { // para cada linha
         for (int j = 0; j < m; j++) { // para cada coluna
             cin >> A[i][j]; // leia um elemento e armazene-o na matriz A
@@ -416,6 +436,79 @@ int main() {
         }
         cout << "\n";
     }
+    return 0;
+}
+```
+
+<br>
+<h1 id="cadeiadecaracteres">:green_book: Cadeia de Caracteres</h1>
+
+<br>
+<h2>Caracteres</h2>
+
+Os caracteres que digitamos estão associados a _códigos_ da tabela <a href="https://pt.wikipedia.org/wiki/ASCII" target="_blank" style="color:#32cd32;">ASCII</a>.
+
+Em C++, podemos armazenar um caractere em uma variável do tipo `char` _(o inteiro da tabela ASCII é armazenado)_.
+
+É importante sempre usar _**aspas simples!**_
+
+Para mostrar o código de um caractere, mudamos o tipo da variável de `char` para `int` com uma operação chamada _cast_:
+
+```cpp
+cout << (int)variavel_do_tipo_char << endl;
+```
+
+Verificando se a letra é maiúscula/minúscula:
+
+```cpp
+if (letra >= 'a' and letra <= 'z') { /* minúscula */ }
+if (letra >= 'A' and letra <= 'Z') { /* maiúscula */ }
+```
+
+<br>
+<h2>Strings</h2>
+
+`string` é um tipo de dado assim como `int` e `double`, mas que armazena uma cadeia de caracteres. Grande parte dos operadores comuns aos outros tipos também funciona com `string`:
+
+- `string A;` - Declarando uma string
+- `A = "frase para a variável";` - Atribuindo uma frase à string
+- `cin >> A;` - Lendo uma palavra
+- `getline(cin, A);` - Lendo uma linha completa
+- `A += "outra frase";` - Adicionando uma frase ao final de uma string
+- `A.size();` - Tamanho de uma string
+- `A[i] == 'j'` - Compara o caractere que está no índice _i_ com o caractere _j_
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    string nome; // inicializando a string nome
+
+    int a = 0, i = 0, e = 0, o = 0, u = 0;
+
+    getline(cin, nome); // lendo o nome digitado pelo usuário
+
+    for (int j = 0; j < nome.size(); j++) { // percorrendo cada caractere de "nome"
+        if (nome[j] == 'a') { // sempre aspas simples para char
+            a++;
+        } else if (nome[j] == 'e') {
+            e++;
+        } else if (nome[j] == 'i') {
+            i++;
+        } else if (nome[j] == 'o') {
+            o++;
+        } else if (nome[j] == 'u') {
+            u++;
+        }
+    }
+    cout << "a = " << a << endl;
+    cout << "e = " << e << endl;
+    cout << "i = " << i << endl;
+    cout << "o = " << o << endl;
+    cout << "u = " << u << endl;
+
     return 0;
 }
 ```
