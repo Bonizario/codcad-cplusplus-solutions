@@ -256,6 +256,7 @@ int main() {
     i = i + 1; // incrementando i
   }
   cout << "\n";
+
   return 0;
 }
 ```
@@ -315,6 +316,7 @@ int main() {
         cout << i << " ";
     }
     cout << "\n";
+
     return 0;
 }
 ```
@@ -393,6 +395,7 @@ int main() {
     cout << sequencia[i] << " "; // percorrendo o vetor de trás para frente, imprimindo seus elementos
   }
   cout << "\n"; // imprimindo a quebra de linha no fim do código
+
   return 0;
 }
 ```
@@ -477,6 +480,8 @@ if (letra >= 'A' and letra <= 'Z') { /* maiúscula */ }
 - `A += "outra frase";` - Adicionando uma frase ao final de uma string
 - `A.size();` - Tamanho de uma string
 - `A[i] == 'j'` - Compara o caractere que está no índice _i_ com o caractere _j_
+
+É importante sempre usar _**aspas duplas!**_ Aspas simples são destinadas aos caracteres, variáveis do tipo `char`.
 
 ```cpp
 #include <iostream>
