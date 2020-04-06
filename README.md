@@ -12,7 +12,9 @@
 <h3 align="center">
 <a href="#introducao" style="color:#32cd32;">Introdução</a>
  | <a href="#controle" style="color:#32cd32;">Controlando o Código</a>
- | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a> | <a href="#cadeiadecaracteres" style="color:#32cd32;">Cadeia de Caracteres</a>
+ | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a>
+ | <a href="#cadeiadecaracteres" style="color:#32cd32;">Cadeia de Caracteres</a>
+ | <a href="#funcoeseordenacao" style="color:#32cd32;">Funções e Ordenação</a>
 </h3>
 
 <br>
@@ -468,6 +470,10 @@ if (letra >= 'a' and letra <= 'z') { /* minúscula */ }
 if (letra >= 'A' and letra <= 'Z') { /* maiúscula */ }
 ```
 
+- `toupper()` e `tolower()` retornam char maiúsculo/minúsculo se existir
+- `isupper()` e `islower()` verificam se o char é maiúsculo/minúsculo
+- `isspace()` retorna valor não nulo se o char for ' ', '\f', '\n', '\r', '\t' ou '\v'.
+
 <br>
 <h2>Strings</h2>
 
@@ -515,5 +521,86 @@ int main() {
     cout << "u = " << u << endl;
 
     return 0;
+}
+```
+
+<br>
+<h1 id="funcoeseordenacao">:green_book: Funções e Ordenação</h1>
+
+<h2>Funções</h2>
+
+Em vários exercícios mais complexos é vantajoso estruturamos a lógica por meio de funções. Assim, nós componentizamos blocos de códigos que podem ser usados várias vezes ao longo do programa.
+
+A sintaxe geral de uma função é:
+
+```cpp
+tipo_do_retorno nome(tipo_do_argumento argumento) {
+    // lógica
+    return retorno;
+}
+```
+
+Chamamos uma função criada por nós mesmos da mesma forma que invocamos uma função padrão de alguma biblioteca.
+
+Uma função pode ter vários parâmetros e eles podem receber qualquer nome (desde que seja válido para uma variável). A seguir, uma função que calcula a média de 3 `doubles`:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+double media(double x, double y, double z) {
+    int retorno = (x + y + z) / 3.0;
+    return retorno;
+}
+```
+
+Vale ressaltar que uma função pode ter um tipo de retorno diferente dos tipos dos seus parâmetros:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int count_a(string s) { // recebendo parâmetro do tipo string
+  int n_a = 0;
+  for (int i = 0; i < s.size(); i++) {
+      if (s[i] == 'a') {
+          n_a++;
+      }
+  }
+  return n_a; // retornando o número de letras 'a' contidas em "s" (tem tipo int)
+}
+```
+
+Além disso, uma função pode ter argumentos de tipos distintos:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+string multiply_string(string s, int a) { // recebendo parâmetros de diferentes tipos
+    string ss = "";
+    for (int i = 0; i < a; i++) {
+        ss += s;
+    }
+    return ss; // retornando a string s 'a' vezes seguidas
+}
+```
+
+Um outro tipo de função, é a função do tipo `void`. Ela não retorna nenhum valor, geralmente só serve para modificar variáveis globais, que são declaradas fora de quaisquer funções, ou variáveis passadas por <a href="https://pt.wikibooks.org/wiki/Programar_em_C%2B%2B/Refer%C3%AAncias_de_dados" target="_blank" style="color:#32cd32;">_referência_</a>.
+
+_Em especial, uma função só pode modificar variáveis globais que forem declaradas antes de si mesma._
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+string s = "Sou uma variável global";
+void emptyness() {
+    s = "Stare into the void."; // modificando string global s
+    return;
 }
 ```
