@@ -13,8 +13,10 @@
 <a href="#introducao" style="color:#32cd32;">Introdução</a>
  | <a href="#controle" style="color:#32cd32;">Controlando o Código</a>
  | <a href="#vetoresematrizes" style="color:#32cd32;">Vetores e Matrizes</a>
- | <a href="#cadeiadecaracteres" style="color:#32cd32;">Cadeia de Caracteres</a>
- | <a href="#funcoeseordenacao" style="color:#32cd32;">Funções e Ordenação</a>
+
+<a href="#cadeiadecaracteres" style="color:#32cd32;">Cadeia de Caracteres</a>
+| <a href="#funcoeseordenacao" style="color:#32cd32;">Funções e Ordenação</a>
+
 </h3>
 
 <br>
@@ -604,3 +606,36 @@ void emptyness() {
     return;
 }
 ```
+
+<br>
+<h2>Funções Recursivas</h2>
+
+> Uma função recursiva é uma função que se refere a si própria. A ideia consiste em utilizar a própria função que estamos a definir na sua definição.
+
+> Para funcionar, uma função recursiva precisa de um passo básico (ou mais) cujo resultado é imediatamente conhecido e um passo recursivo em que se tenta resolver um sub-problema do problema inicial.
+
+A seguir, um exemplo que retorna o n-ésimo número de Fibonacci:
+
+```cpp
+#include <iostream>
+
+using namespace std;
+
+int fib(int n) {
+    if (n < 2) { // casos de base, F(1) e F(0)
+        return 1;
+    }
+    return fib(n - 1) + fib(n - 2); // funciona para os demais casos
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cout << fib(n) << "\n";
+    return 0;
+}
+```
+
+É importante tomar cuidado na escolha do caso base, o ideal é escolher o menor valor possível. Poderíamos escolher um caso base arbitrário como F(8).
+
+Para valores maiores que 8 a função funcionaria perfeitamente. Contudo, para valores menores, o passo recursivo entraria em loop tendendo a -infinito!
