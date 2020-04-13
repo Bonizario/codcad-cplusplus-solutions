@@ -11,4 +11,7 @@ int soma(int N) {
 
 int main() {
     int N;
+    cin >> N;
+    cout << soma(N) << "\n";
+    return 0;
 }

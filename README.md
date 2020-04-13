@@ -639,3 +639,171 @@ int main() {
 É importante tomar cuidado na escolha do caso base, o ideal é escolher o menor valor possível. Poderíamos escolher um caso base arbitrário como F(8).
 
 Para valores maiores que 8 a função funcionaria perfeitamente. Contudo, para valores menores, o passo recursivo entraria em loop tendendo a -infinito!
+
+<br>
+<h2>Ordenação - Parte 1</h2>
+
+Existem várias técnicas e algoritmos que nos permitem ordenar um array. 
+
+O código a seguir demonstra o algoritmo _Selection Sort_. Basicamente ele seleciona o menor número do vetor, imprime e salva o seu índice. Assim, nas próximas repetições esse número não voltará a ser impresso.
+
+```cpp
+for (int i = 1; i <= n;i++) { // para cada número a ser impresso
+  
+  menor = INF; // fazemos menor começar como infinito, ou seja, um número muito grande
+  
+  for (int j = 1; j <= n; j++) { // percorrendo o vetor
+    
+    if (lista[j] == 0 && vetor[j] < menor) { // procurando um número menor que "menor" que não esteja na lista
+      
+      menor = vetor[j]; // fazemos "menor" receber seu valor
+      ind_menor = j; // guardamos seu índice em "ind_menor"
+    }
+  }
+  
+  cout << menor << " "; // imprimindo o menor número que achamos
+  
+  lista[ind_menor] = 1; // guardando seu índice na lista de impresos
+}
+```
+Em sequência, está o _Bubble Sort_. Nele, percorremos o vetor várias vezes, invertendo os números desordenados. Ele se encerra quando o vetor estiver completamente ordenado.
+```cpp
+int ordenado = 0; // inicializando "ordenado" como 0, para que o loop comece
+   
+while(ordenado == 0){ // enquanto ordenado for 0
+     
+  ordenado = 1; // supomos que o vetor está ordenado
+     
+  for(int i=1; i < n; i++){ // para todas as posições, exceto a última
+    if(vetor[i] > vetor[i+1]){ // checamos se há inversão entre vetor[i] e vetor[i + 1]
+        
+      // se houver, trocamos os valores de vetor[i] e vetor[i+1]
+      int tmp = vetor[i];
+      vetor[i] = vetor[i+1];
+      vetor[i+1] = tmp;
+        
+      ordenado = 0; // salvamos que o vetor não está ordenado
+    }
+  }
+}
+```
+
+Vale notar que ambos os algoritmos acima não são rápidos. Para vetores grandes, geralmente maiores que 10^4, é necessário usar métodos mais sofisticados.
+
+A biblioteca `<algorithm>` possui uma função `sort()` que nos permite ordenar um vetor do menor ao maior:
+
+- `sort(inicio, fim)` 
+
+`inicio` é um ponteiro para a primeira posição que queremos ordenar e `fim` um ponteiro para a primeira posição que não queremos ordenar. Assim, para ordenarmos um vetor `v` de tamanho `n`, usamos o comando `sort(v, v + n)`. _(O vetor é indexado de **0** a **n - 1**, o index **n** não existe!)_
+
+```cpp
+#include <iostream>
+#include <algorithm> // biblioteca que contém a função sort
+
+using namespace std;
+
+int main(){
+  int N;
+  cin >> N;
+  int v[N];
+
+  for (int i = 0; i < N; i++) {
+    cin >> v[i]; // armazenando as variáveis do vetor
+  } 
+
+  sort(v, v + N); // ordenando as N posições do vetor
+
+  for (int i = 0; i < N; i++) {
+    cout << v[i] << " "; // imprimindo cada posição
+  }
+
+  cout << "\n";
+  return 0;
+}
+```
+
+<br>
+<h2>Ordenação - Parte 2</h2>
+
+A função `sort()` possui um terceiro parâmetro, uma função opicional. Por meio dela, poderemos personalizar os critérios de ordenação para diferentes problemas.
+
+```cpp
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+int func(int a, int b) {
+    return a > b; // vetor ficará em ordem decrescente
+} // o padrão é return a < b;
+
+int main() {
+    int v[5] = {4, 1, 2, 5, 3};
+    sort(v, v + 5, func);
+    for (int i = 0; i < 5; i++) {
+        cout << v[i] << "\n";
+    }
+}
+
+```
+
+Em C++ podemos criar uma estrutura chamada `struct`, totalmente personalizável ao nosso problema. _(Após a declaração é necessário ponto e vírgula!)_
+
+- `struct nome { tipo1 nome1; tipo2 nome 2; ... };`
+
+A partir dessa struct, podemos criar novos elementos que possuem as propriedades definidas:
+
+```cpp
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct aluno { // criando um tipo aluno
+    string nome;
+    double media;
+};
+
+int main() {
+    aluno a, b; // criando um aluno 'a' e um aluno 'b'
+    a.nome = "Gustavo"; // atribuindo valores
+    b.nome = "Lucas";
+
+    cin >> a.media >> b.media; // atribuindo valores
+
+    cout << a.nome << " " << a.media << "\n";
+    cout << b.nome << " " << b.media << "\n";
+    return 0;
+}
+```
+
+É possível criar um vetor de um tipo criado com `struct` e ordená-lo por meio da função `sort()`. Ademais, podemos definir uma _função personalizada_ e passá-la como parâmetro para `sort()`.
+
+```cpp
+#include <iostream>
+#include <algorithm>
+
+using namespace std;
+
+struct Aluno { // criando o tipo aluno
+  string nome;
+  double nota;  
+}; // PONTO E VÍRGULA !! =)
+
+bool comparaAlunos(Aluno a, Aluno b) {
+  return a.nota < b.nota; // prioridade para as menores notas (ordem crescente)
+}
+
+int main() {
+  Aluno aluno[3]; // criando um vetor de alunos
+
+  for (int i = 0; i < 3; i++) {
+    cin >> aluno[i].nome >> aluno[i].nota; // lendo o nome e a nota de cada aluno
+  }
+
+  sort(aluno, aluno + 3, comparaAlunos); // ordenando
+
+  for (int i = 0; i < 3; i++) {
+    cout << aluno[i].nome << " " << aluno[i].nota << "\n"; // imprimindo cada aluno
+}
+```
