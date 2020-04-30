@@ -302,7 +302,7 @@ int main() {
 }
 ```
 
-`continue` ignora todos os comandos que o loop ainda deveria fazer na iteração atual e passar para a próxima iteração.
+`continue` ignora todos os comandos que o loop ainda deveria fazer na iteração atual e passa para a próxima iteração.
 
 _`continue` **não** para o loop. Também funciona no `while`._
 
